@@ -1,9 +1,9 @@
 <% # Handle old behaviour of official mysql image %>
-<% user = ENV.key?("MYSQL_ROOT_PASSWORD") ? "root" : ENV["MYSQL_USER"] %>
-<% password = ENV.key?("MYSQL_ROOT_PASSWORD") ? ENV["MYSQL_ROOT_PASSWORD"] : ENV["MYSQL_PASSWORD"] %>
+<% user = ENV.key?("DATABASE_ROOT_PASSWORD") ? "root" : ENV["DATABASE_USER"] %>
+<% password = ENV.key?("DATABASE_ROOT_PASSWORD") ? ENV["DATABASE_ROOT_PASSWORD"] : ENV["DATABASE_PASSWORD"] %>
 development:
   adapter: mysql2
-  database: <%= ENV["MYSQL_DATABASE"] %>
+  database: sampledb 
   username: <%= user %>
   password: <%= password %>
   host: <%= ENV["DATABASE_SERVICE_HOST"] %>
@@ -11,7 +11,7 @@ development:
 
 test:
   adapter: mysql2
-  database: <%= ENV["MYSQL_DATABASE"] %>
+  database: sampledb 
   username: <%= user %>
   password: <%= password %>
   host: <%= ENV["DATABASE_TEST_SERVICE_HOST"] %>
@@ -19,7 +19,7 @@ test:
 
 production:
   adapter: mysql2
-  database: <%= ENV["MYSQL_DATABASE"] %>
+  database: sampledb
   username: <%= user %>
   password: <%= password %>
   host: <%= ENV["DATABASE_SERVICE_HOST"] %>

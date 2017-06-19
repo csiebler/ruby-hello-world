@@ -6,13 +6,13 @@ def self.connect_to_database_prod
       :adapter  => "mysql2",
       :host     => "#{ENV["DATABASE_SERVICE_HOST"]}",
       :port     => "#{ENV["DATABASE_SERVICE_PORT"]}",
-      :database => "#{ENV["MYSQL_DATABASE"]}"
+      :database => "sampledb"
     }
-    if ENV.key?("MYSQL_ROOT_PASSWORD")
-      config[:password] = "#{ENV["MYSQL_ROOT_PASSWORD"]}"
+    if ENV.key?("DATABASE_ROOT_PASSWORD")
+      config[:password] = "#{ENV["DATABASE_ROOT_PASSWORD"]}"
     else
-      config[:username] = "#{ENV["MYSQL_USER"]}"
-      config[:password] = "#{ENV["MYSQL_PASSWORD"]}"
+      config[:username] = "#{ENV["DATABASE_USER"]}"
+      config[:password] = "#{ENV["DATABASE_PASSWORD"]}"
     end
 
     puts "Connecting to production database (#{config[:username]}@#{config[:host]}:#{config[:port]})..."
@@ -34,13 +34,13 @@ def self.connect_to_database_test
       :adapter  => "mysql2",
       :host     => "#{ENV["DATABASE_TEST_SERVICE_HOST"]}",
       :port     => "#{ENV["DATABASE_TEST_SERVICE_PORT"]}",
-      :database => "#{ENV["MYSQL_DATABASE"]}"
+      :database => "sampledb"
     }
-    if ENV.key?("MYSQL_ROOT_PASSWORD")
-      config[:password] = ENV["MYSQL_ROOT_PASSWORD"]
+    if ENV.key?("DATABASE_ROOT_PASSWORD")
+      config[:password] = ENV["DATABASE_ROOT_PASSWORD"]
     else
-      config[:username] = ENV["MYSQL_USER"]
-      config[:password] = ENV["MYSQL_PASSWORD"]
+      config[:username] = ENV["DATABASE_USER"]
+      config[:password] = ENV["DATABASE_PASSWORD"]
     end
 
     puts "Connecting to test database (#{config[:username]}@#{config[:host]}:#{config[:port]})..."
